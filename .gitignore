@@ -1,8 +1,10 @@
-# Dependencies
-.psci_modules
-bower_components
+# Node
 node_modules
+package-lock.json
+yarn.lock
 
-# Generated files
-.psci
-output
+# Compiled files
+lib
+
+# Tests
+**test**

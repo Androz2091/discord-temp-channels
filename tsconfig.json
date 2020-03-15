@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": true,
+        "outDir": "./lib",
+        "strict": true,
+        "resolveJsonModule": true,
+        "strictNullChecks": false,
+        "esModuleInterop": true
+    },
+    "include": [ "src/**/*" ]
+}
