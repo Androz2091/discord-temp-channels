@@ -88,6 +88,7 @@ export const handleVoiceStateUpdate = async (
                     type: "voice"
                 }
             );
+            manager.emit("childCreate", newState.member, channel, manager.client.channels.cache.get(parentChannel.channelID));
             // Move the member in the new channel
             newState.setChannel(channel);
             // Add the child
