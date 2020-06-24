@@ -151,6 +151,10 @@ client.on("message", (message) => {
         if(tempChannels.channels.some((channel) => channel.channelID === message.member.voice.channel.id)){
             return message.channel.send("Your voice channel is already a main voice channel");
         }
+        
+        if (!message.member.voice.channel) return message.channel.send('You must be in a voice channel to use this command.');
+
+        
         const options = {
             childAutoDelete: true,
             childAutoDeleteIfOwnerLeaves: true,
@@ -158,6 +162,11 @@ client.on("message", (message) => {
             childBitrate: 64000,
             childFormat: (member, count) => `#${count} | ${member.user.username}'s lounge`
         };
+        
+        if(message.member.voice.channel.parent) {
+			options.childCategory = message.member.voice.channel.parent.id;
+		}
+        
         tempChannels.registerChannel(message.member.voice.channel.id, options);
         db.push("temp-channels", {
             channelID: message.member.voice.channel.id,
