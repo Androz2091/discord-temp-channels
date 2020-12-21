@@ -140,6 +140,7 @@ const tempChannels = new TempChannels(client);
 const db = require("quick.db");
 
 client.on("ready", () => {
+    if (!db.get("temp-channels")) db.set("temp-channels", []);
     db.get("temp-channels").forEach((channelData) => {
         tempChannels.registerChannel(channelData.channelID, channelData.options);
     });
