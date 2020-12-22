@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\" --tab-width 4",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "prepublish": "npm run build"
   },
   "repository": "git+https://github.com/Androz2091/discord-temp-channels.git",
   "author": "Androz2091 <androz2091@gmail.com>",
