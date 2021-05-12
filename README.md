@@ -22,7 +22,7 @@ const tempChannels = new TempChannels(client);
 // Register a new main channel
 tempChannels.registerChannel("channel-id", {
     childCategory: "category-id",
-    childAutoDelete: true,
+    childAutoDeleteIfEmpty: true,
     childMaxUsers: 3,
     childFormat: (member, count) => `#${count} | ${member.user.username}'s lounge`
 });
@@ -44,7 +44,7 @@ You have to register a channel to indicate to the package which channel will be 
 // Register a new parent channel
 tempChannels.registerChannel("channel-id", {
     childCategory: "category-id",
-    childAutoDelete: true,
+    childAutoDeleteIfEmpty: true,
     childAutoDeleteIfOwnerLeaves: true,
     childMaxUsers: 3,
     childBitrate: 64000,
@@ -97,7 +97,7 @@ tempChannels.on("channelRegister", (channelData) => {
         "channelID": "03909309383083"
         "options": {
             "childCategory": "380398303838398390",
-            "childAutoDelete": true
+            "childAutoDeleteIfEmpty": true
             etc...
         }
     }
@@ -112,7 +112,7 @@ tempChannels.on("channelUnregister", (channelData) => {
         "channelID": "03909309383083"
         "options": {
             "childCategory": "380398303838398390",
-            "childAutoDelete": true
+            "childAutoDeleteIfEmpty": true
             etc...
         }
     }
