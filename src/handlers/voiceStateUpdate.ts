@@ -30,7 +30,7 @@ export const handleVoiceStateUpdate = async (
             );
             // If the channel has to be deleted and is empty
             if (
-                (parentChannel.options.childAutoDelete &&
+                (parentChannel.options.childAutoDeleteIfEmpty &&
                     oldState.channel.members.size === 0) ||
                 (parentChannel.options.childAutoDeleteIfOwnerLeaves &&
                     !oldState.channel.members.has(childToDelete.owner.id))

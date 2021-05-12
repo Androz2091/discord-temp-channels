@@ -27,7 +27,7 @@ class TempChannelsManager extends EventEmitter {
         channelID: Snowflake,
         options: ParentChannelOptions = {
             childCategory: null,
-            childAutoDelete: true,
+            childAutoDeleteIfEmpty: true,
             childAutoDeleteIfOwnerLeaves: true,
             childFormat: (member, count) => `#${count} | ${member}'s lounge`,
             childMaxUsers: null
