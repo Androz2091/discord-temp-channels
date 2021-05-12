@@ -55,7 +55,7 @@ tempChannels.registerChannel("channel-id", {
 **channelID**: The ID of the channel the users will have to join to create a new channel.
 
 **options.childCategory**: Optional - This will be the category ID in which the new channels will be created.  
-**options.childAutoDelete**: Whether, when a channel is empty, it should be deleted.  
+**options.childAutoDeleteIfEmpty**: Whether, when a channel is empty, it should be deleted.  
 **options.childAutoDeleteIfOwnerLeaves**: Whether, when the member who created a channel left it, it should be deleted (even if it's not empty).  
 **options.childMaxUsers**: Optional - This will be the maximum number of users that can join a channel  
 **options.childBitrate**: Optional - This will be the new channel bitrate  
@@ -153,7 +153,7 @@ client.on("message", (message) => {
             return message.channel.send("Your voice channel is already a main voice channel");
         }
         const options = {
-            childAutoDelete: true,
+            childAutoDeleteIfEmpty: true,
             childAutoDeleteIfOwnerLeaves: true,
             childMaxUsers: 3,
             childBitrate: 64000,
