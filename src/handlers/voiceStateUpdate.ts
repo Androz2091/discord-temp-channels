@@ -7,26 +7,26 @@ export const handleVoiceStateUpdate = async (
     newState: VoiceState
 ) => {
     const voiceChannelLeft: boolean =
-        !!oldState.channelID && !newState.channelID;
+        !!oldState.channelId && !newState.channelId;
     const voiceChannelMoved: boolean =
-        !!oldState.channelID &&
-        !!newState.channelID &&
-        oldState.channelID !== newState.channelID;
+        !!oldState.channelId &&
+        !!newState.channelId &&
+        oldState.channelId !== newState.channelId;
     const voiceChannelJoined: boolean =
-        !oldState.channelID && !!newState.channelID;
+        !oldState.channelId && !!newState.channelId;
 
     // If the member left a channel or moved to a new one
     if (voiceChannelLeft || voiceChannelMoved) {
         // The parent channel of the channel in which the member isn't anymore
         const parentChannel = manager.channels.find(channelData =>
             channelData.children.some(
-                child => child.channel.id === oldState.channelID
+                child => child.channel.id === oldState.channelId
             )
         );
         // If there is a parent
         if (parentChannel) {
             const childToDelete = parentChannel.children.find(
-                child => child.channel.id === oldState.channelID
+                child => child.channel.id === oldState.channelId
             );
             // If the channel has to be deleted and is empty
             if (
@@ -69,7 +69,7 @@ export const handleVoiceStateUpdate = async (
     if (voiceChannelJoined || voiceChannelMoved) {
         // Check if the member is in a parent channel
         const parentChannel = manager.channels.find(
-            channelData => channelData.channelID === newState.channelID
+            channelData => channelData.channelID === newState.channelId
         );
         // If the member is in a parent channel
         if (parentChannel) {
@@ -85,7 +85,7 @@ export const handleVoiceStateUpdate = async (
                     parent: parentChannel.options.childCategory,
                     bitrate: parentChannel.options.childBitrate,
                     userLimit: parentChannel.options.childMaxUsers,
-                    type: "voice"
+                    type: "GUILD_VOICE"
                 }
             );
             manager.emit(
