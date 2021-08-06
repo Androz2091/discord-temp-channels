@@ -13,7 +13,7 @@ class TempChannelsManager extends EventEmitter {
         super();
 
         if (!new Intents(client.options.intents).has('GUILD_VOICE_STATES')) {
-            throw new Error('GUILD_VOICE_STATS intent is required to use this package!');
+            throw new Error('GUILD_VOICE_STATES intent is required to use this package!');
         }
 
         this.channels = [];
