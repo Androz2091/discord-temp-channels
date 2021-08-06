@@ -1,6 +1,6 @@
 # Discord Temporary Voice Channels
 
-Discord Temp Channels is a framework to facilitate the creation of a temporary voice channels system using Discord.js!
+Discord Temp Channels is a framework to facilitate the creation of a temporary voice channels system using Discord.js (v13)!
 
 ## Installation
 
