@@ -1,6 +1,6 @@
 {
   "name": "discord-temp-channels",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Simple framework to facilitate the creation of a temporary voice channels system using Discord.js",
   "main": "lib/index.js",
   "files": [
