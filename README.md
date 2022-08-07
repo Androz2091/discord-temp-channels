@@ -146,11 +146,11 @@ client.on("ready", () => {
     });
 });
 
-client.on("message", (message) => {
+client.on("messageCreate", (message) => {
 
     if(message.content.startsWith("!set")){
         if(tempChannels.channels.some((channel) => channel.channelID === message.member.voice.channel.id)){
-            return message.channel.send("Your voice channel is already a main voice channel");
+            return message.channel.send({ content: "Your voice channel is already a main voice channel" });
         }
         const options = {
             childAutoDeleteIfEmpty: true,
@@ -164,7 +164,7 @@ client.on("message", (message) => {
             channelID: message.member.voice.channel.id,
             options: options
         });
-        message.channel.send("Your voice is now a main voice channel!");
+        message.channel.send({ content: "Your voice is now a main voice channel!" });
     }
 
 });
