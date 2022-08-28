@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\" --tab-width 4",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "npx eslint",
     "prepublish": "npm run build"
   },
   "repository": "git+https://github.com/Androz2091/discord-temp-channels.git",
@@ -19,9 +19,9 @@
   "devDependencies": {
     "@types/node": "^18.0.3",
     "@types/ws": "^7.2.2",
-    "discord.js": "^14.1.2",
-    "tslint": "^6.1.0",
-    "tslint-config-prettier": "^1.18.0",
+    "discord.js": "^14.3.0",
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
     "typescript": "^4.7.4"
   },
   "peerDependencies": {
