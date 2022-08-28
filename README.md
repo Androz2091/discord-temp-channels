@@ -1,6 +1,6 @@
 # Discord Temporary Voice Channels
 
-Discord Temp Channels is a framework to facilitate the creation of a temporary voice channels system using Discord.js (v13)!
+Discord Temp Channels is a framework to facilitate the creation of a temporary voice channels system using Discord.js (v14)!
 
 ## Installation
 
@@ -14,7 +14,12 @@ npm install --save discord-temp-channels
 
 ```js
 const Discord = require("discord.js");
-const client = new Discord.Client();
+const client = new Discord.Client({ intents: [
+    Discord.GatewayIntentBits.Guilds,
+    Discord.GatewayIntentBits.GuildMessages,
+    Discord.GatewayIntentBits.GuildVoiceStates,
+    Discord.GatewayIntentBits.MessageContent
+]});
 
 const TempChannels = require("discord-temp-channels");
 const tempChannels = new TempChannels(client);
@@ -132,7 +137,12 @@ This code stores temporary channels data in a database (quick.db in this case). 
 
 ```js
 const Discord = require("discord.js");
-const client = new Discord.Client();
+const client = new Discord.Client({ intents: [
+    Discord.GatewayIntentBits.Guilds,
+    Discord.GatewayIntentBits.GuildMessages,
+    Discord.GatewayIntentBits.GuildVoiceStates,
+    Discord.GatewayIntentBits.MessageContent
+]});
 
 const TempChannels = require("discord-temp-channels");
 const tempChannels = new TempChannels(client);
@@ -146,11 +156,11 @@ client.on("ready", () => {
     });
 });
 
-client.on("message", (message) => {
+client.on("messageCreate", (message) => {
 
     if(message.content.startsWith("!set")){
         if(tempChannels.channels.some((channel) => channel.channelID === message.member.voice.channel.id)){
-            return message.channel.send("Your voice channel is already a main voice channel");
+            return message.channel.send({ content: "Your voice channel is already a main voice channel" });
         }
         const options = {
             childAutoDeleteIfEmpty: true,
@@ -164,7 +174,7 @@ client.on("message", (message) => {
             channelID: message.member.voice.channel.id,
             options: options
         });
-        message.channel.send("Your voice is now a main voice channel!");
+        message.channel.send({ content: "Your voice is now a main voice channel!" });
     }
 
 });

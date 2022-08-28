@@ -1,4 +1,4 @@
-import { Client, VoiceChannel, Snowflake, Intents } from "discord.js";
+import { Client, VoiceChannel, Snowflake, IntentsBitField } from "discord.js";
 import { EventEmitter } from "events";
 
 import { ParentChannelData, ParentChannelOptions } from "./types";
@@ -12,8 +12,12 @@ class TempChannelsManager extends EventEmitter {
     constructor(client: Client) {
         super();
 
-        if (!new Intents(client.options.intents).has('GUILD_VOICE_STATES')) {
-            throw new Error('GUILD_VOICE_STATES intent is required to use this package!');
+        if (
+            !new IntentsBitField(client.options.intents).has("GuildVoiceStates")
+        ) {
+            throw new Error(
+                "GuildVoiceStates intent is required to use this package!"
+            );
         }
 
         this.channels = [];
@@ -23,7 +27,7 @@ class TempChannelsManager extends EventEmitter {
             handleVoiceStateUpdate(this, oldState, newState);
         });
 
-        this.client.on("channelDelete", channel => {
+        this.client.on("channelDelete", (channel) => {
             handleChannelDelete(this, channel as VoiceChannel);
         });
     }
@@ -35,13 +39,13 @@ class TempChannelsManager extends EventEmitter {
             childAutoDeleteIfEmpty: true,
             childAutoDeleteIfOwnerLeaves: true,
             childFormat: (member, count) => `#${count} | ${member}'s lounge`,
-            childMaxUsers: null
+            childMaxUsers: null,
         }
     ) {
         const channelData: ParentChannelData = {
             channelID,
             options,
-            children: []
+            children: [],
         };
         this.channels.push(channelData);
         this.emit("channelRegister", channelData);
@@ -49,10 +53,10 @@ class TempChannelsManager extends EventEmitter {
 
     unregisterChannel(channelID: Snowflake) {
         const channel = this.channels.find(
-            channelData => channelData.channelID === channelID
+            (channelData) => channelData.channelID === channelID
         );
         this.channels = this.channels.filter(
-            channelData => channelData.channelID !== channelID
+            (channelData) => channelData.channelID !== channelID
         );
         return this.emit("channelUnregister", channel);
     }
