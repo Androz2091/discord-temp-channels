@@ -1,4 +1,4 @@
-import { VoiceChannel, VoiceState } from "discord.js";
+import { VoiceChannel, VoiceState, ChannelType } from "discord.js";
 import TempChannelsManager from "../index";
 
 export const handleVoiceStateUpdate = async (
@@ -80,12 +80,12 @@ export const handleVoiceStateUpdate = async (
                 count
             );
             const channel = await newState.guild.channels.create(
-                newChannelName,
                 {
+                    name: newChannelName,
                     parent: parentChannel.options.childCategory,
                     bitrate: parentChannel.options.childBitrate,
                     userLimit: parentChannel.options.childMaxUsers,
-                    type: "GUILD_VOICE"
+                    type: ChannelType.GuildVoice
                 }
             );
             manager.emit(
