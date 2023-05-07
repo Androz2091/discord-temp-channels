@@ -5,7 +5,7 @@ Discord Temp Channels is a framework to facilitate the creation of a temporary v
 ## Installation
 
 ```sh
-npm install --save discord-temp-channels
+npm install --save @gamers-geek/discord-temp-channels
 ```
 
 ## Example
