@@ -1,11 +1,11 @@
 # Discord Temporary Voice Channels
 
-Discord Temp Channels is a framework to facilitate the creation of a temporary voice channels system using Discord.js (v13)!
+Discord Temp Channels is a framework to facilitate the creation of a temporary voice channels system using Discord.js (v14)!
 
 ## Installation
 
 ```sh
-npm install --save discord-temp-channels
+npm install --save @gamers-geek/discord-temp-channels
 ```
 
 ## Example
@@ -16,7 +16,7 @@ npm install --save discord-temp-channels
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-const TempChannels = require("discord-temp-channels");
+const TempChannels = require("@gamers-geek/discord-temp-channels");
 const tempChannels = new TempChannels(client);
 
 // Register a new main channel

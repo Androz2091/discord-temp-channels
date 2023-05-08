@@ -1,13 +1,13 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "esnext",
         "module": "commonjs",
         "declaration": true,
         "outDir": "./lib",
         "strict": true,
         "resolveJsonModule": true,
         "strictNullChecks": false,
-        "esModuleInterop": true
+        "esModuleInterop": true,
     },
     "include": [ "src/**/*" ]
 }

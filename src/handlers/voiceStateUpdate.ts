@@ -1,4 +1,4 @@
-import { VoiceChannel, VoiceState } from "discord.js";
+import { ChannelType, VoiceChannel, VoiceState } from "discord.js";
 import TempChannelsManager from "../index";
 
 export const handleVoiceStateUpdate = async (
@@ -18,15 +18,15 @@ export const handleVoiceStateUpdate = async (
     // If the member left a channel or moved to a new one
     if (voiceChannelLeft || voiceChannelMoved) {
         // The parent channel of the channel in which the member isn't anymore
-        const parentChannel = manager.channels.find(channelData =>
+        const parentChannel = manager.channels.find((channelData) =>
             channelData.children.some(
-                child => child.channel.id === oldState.channelId
+                (child) => child.channel.id === oldState.channelId
             )
         );
         // If there is a parent
         if (parentChannel) {
             const childToDelete = parentChannel.children.find(
-                child => child.channel.id === oldState.channelId
+                (child) => child.channel.id === oldState.channelId
             );
             // If the channel has to be deleted and is empty
             if (
@@ -41,7 +41,7 @@ export const handleVoiceStateUpdate = async (
                     .then(() => {
                         // Remove the channel from the children
                         parentChannel.children = parentChannel.children.filter(
-                            child =>
+                            (child) =>
                                 child.channel.id !== childToDelete.channel.id
                         );
                         manager.emit(
@@ -53,7 +53,7 @@ export const handleVoiceStateUpdate = async (
                             )
                         );
                     })
-                    .catch(error => {
+                    .catch((error) => {
                         manager.emit(
                             "error",
                             error.message,
@@ -69,7 +69,7 @@ export const handleVoiceStateUpdate = async (
     if (voiceChannelJoined || voiceChannelMoved) {
         // Check if the member is in a parent channel
         const parentChannel = manager.channels.find(
-            channelData => channelData.channelID === newState.channelId
+            (channelData) => channelData.channelID === newState.channelId
         );
         // If the member is in a parent channel
         if (parentChannel) {
@@ -79,15 +79,13 @@ export const handleVoiceStateUpdate = async (
                 newState.member,
                 count
             );
-            const channel = await newState.guild.channels.create(
-                newChannelName,
-                {
-                    parent: parentChannel.options.childCategory,
-                    bitrate: parentChannel.options.childBitrate,
-                    userLimit: parentChannel.options.childMaxUsers,
-                    type: "GUILD_VOICE"
-                }
-            );
+            const channel = await newState.guild.channels.create({
+                name: newChannelName,
+                parent: parentChannel.options.childCategory,
+                bitrate: parentChannel.options.childBitrate,
+                userLimit: parentChannel.options.childMaxUsers,
+                type: ChannelType.GuildVoice,
+            });
             manager.emit(
                 "childCreate",
                 newState.member,
@@ -99,7 +97,7 @@ export const handleVoiceStateUpdate = async (
             // Add the child
             parentChannel.children.push({
                 owner: newState.member,
-                channel
+                channel,
             });
         }
     }
