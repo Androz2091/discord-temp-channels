@@ -16,7 +16,7 @@ npm install --save @gamers-geek/discord-temp-channels
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-const TempChannels = require("discord-temp-channels");
+const TempChannels = require("@gamers-geek/discord-temp-channels");
 const tempChannels = new TempChannels(client);
 
 // Register a new main channel
